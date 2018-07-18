@@ -1,0 +1,311 @@
+body{
+	font-family: sans-serif;
+    font-size:15px;
+	margin:30px;
+
+}
+.fonts{
+    font-family: sans-serif;
+    font-size:15px;
+    text-align: left;
+}
+
+main{
+    margin:60px 0;
+}
+aside{
+    margin: 60px 0;
+    width: 200px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid #e7e7e7;
+    background-color: #f3f3f3;
+}
+
+nav li {
+    list-style: none;
+    float: left;
+
+}
+nav li a {
+    display: block;
+    color: #666;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+nav li a:hover:not(.active) {
+    background-color: #ddd;
+}
+
+nav li a.active {
+    color: white;
+    background-color: #4CAF50;
+}
+
+ul{
+    margin-left: 0em;
+    padding-left: 0;
+}
+aside li{
+
+    padding: 10px;
+    background-color: midnightblue;
+    color: #f3f3f3;
+}
+
+
+.error{color:red;}
+
+.detail{
+    display: none;
+}
+input[type=text],input[type=date],textarea {
+    width: 30%;
+    padding: 7px;
+    margin: 8px 0;
+    
+    border: 1px solid grey;
+    border-radius: 4px;
+    display:inline-block;
+}
+
+select[multiple]{
+    height: 200px;
+}
+input[type=number]{
+    padding: 7px;
+    margin: 8px 0;
+
+    border: 1px solid grey;
+    border-radius: 4px;
+    display:inline-block;
+}
+.numbers,select{
+    border: 1px solid grey;
+    padding: 8px;
+    border-radius: 4px;
+    margin:8px;
+}
+
+input[type=text]:focus,input[type=date]:focus,input[type=number]:focus,textarea:focus, select :focus, .numbers:focus {
+    border: 3px solid #555;
+}
+
+input:invalid{
+    background-color: rgba(255, 92, 66, 0.33);
+}
+
+.tenpercent{
+    width:50%;
+
+}
+/*input[type=submit],input[type=reset]{
+	width: 10%;
+	color:white;
+	font-size:14px;
+	border:none;
+	border-radius:4px;
+	padding: 10px 10px;
+    margin: 8px 0;
+}
+input[type=submit]{
+	background-color:green;
+}
+
+input[type=reset]{
+	background-color:grey;
+}*/
+
+
+a:link, a:visited,a:hover, a:active {
+	color:black;
+    text-decoration: none;
+}
+
+.underline:hover{
+    text-decoration: underline;
+}
+
+.right{
+    float: right;
+
+    display:inline-block;
+}
+.left{
+    display: inline-block;
+    float: left;
+}
+.sorttable select,.sorttable input{
+    padding:3px 10px;
+    width: auto;
+}
+fieldset{
+    margin:30px;
+    border-width:1px;
+}
+legend{
+    font-size: 0.9em;
+}
+
+table{
+	width:100%;
+}
+
+table,td,th{
+	border-bottom:1px solid grey;
+    border-collapse: collapse;
+}
+
+td,th{
+	padding:10px;
+}
+
+th{
+    background-color: midnightblue;
+    color: white;
+    text-align: left;
+}
+tr:nth-child(even){background-color: #f2f2f2;}
+
+.heading2{
+	font-size:90%;
+	font-weight:normal;
+}
+
+.relative {
+    position: relative;
+} 
+
+.absolute {
+    position: absolute;
+    bottom: 0px;
+    right: 0;
+}
+
+.small{
+	font-size:0.8em;
+}
+
+.button {
+  display: inline-block;
+  padding: 5px 10px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  
+}
+
+.green{
+    color: white !important;
+    background-color: #4CAF50;
+}
+
+.grey{
+    background-color: grey;
+    color: white;
+}
+
+.button:hover {
+
+	font-size:100%;
+}
+.button:active {
+
+  transform: translateY(3px);
+  font-size:100%;
+}
+
+.infos{
+    line-height: 150%;
+}
+
+ul{
+    list-style-type: none;
+}
+
+.firstpicture{
+    width:150px;
+    float:left;
+   /* margin:50px 0 0 0*/
+}
+
+.clear{
+    clear:both;
+}
+
+.otherpictures{
+    height:120px;
+    margin:0px 10px 5px 0;
+
+}
+
+
+.gallery{
+    margin: 10px;
+    float: left;
+
+
+}
+
+.descr{
+    max-width: 130px;
+}
+
+
+    .wrapperbox{
+        margin:10px 0;
+        /*border:1px solid black;*/
+        clear: both;
+        background-color: #c7dcf6;
+    }
+    .leftbox{
+        width: 150px;
+        float: left;
+        padding:5px;
+    }
+    .mainbox{
+        margin:0 0 0 170px;
+        padding: 10px;
+    }
+    h1{
+        padding:20px 180px 15px 180px;
+        background-color: #c7dcf6;
+        color: black;
+        /*font-family: "Walbaum Zierfraktur Pro";
+        font-size: 50px;*/
+
+    }
+
+
+pre{
+    white-space: pre-wrap;
+}
+
+.indent{
+    margin-left: 4.5em;
+}
+
+div.table{
+    display: table;
+}
+div.row{
+    display: table-row;
+}
+div.celll{
+    display: table-cell;
+    width: 80px;
+
+}
+div.cellr{
+    display: table-cell;
+}

@@ -1,0 +1,21 @@
+{% extends 'base.twig' %}
+
+{% block title %}Vorhandene Datensätze{% endblock %}
+
+{% block content %}
+    <table>
+        <tr><th>Vornamen</th><th>Nachname</th><th>Geburtsname</th><th>Geburtsdatum</th><th>Sterbedatum</th></tr>
+
+        {% for person in persons %}
+            <tr><td><a href="?c=detail&id={{ person.id }}">{{ person.getFirstnames() }}</a></td>
+                <td>{{ person.lastname }}</td>
+                <td>{{ person.birthname }}</td>
+                <td>{% if person.getBirthday() is defined %}
+                    {{  person.getBirthday() }}
+            {% endif %}</td>
+                <td>{% if person.getDeathdate() is not empty %}
+                    {{ person.getDeathdate() }}
+            {% endif %}</td></tr>
+        {% endfor %}
+    </table>
+{% endblock %}

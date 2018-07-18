@@ -1,0 +1,45 @@
+#parchment{
+    background-image: url("../../images/background/parchment-1129342.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 1400px;
+    width: 80%;
+   max-width: 1100px;
+    margin: 80px auto;
+    padding:50px 30px;
+}
+#content{
+
+    margin: 13%;
+    font-size: 1.3em;
+    line-height: 1.3;
+    /*border:1px solid black;*/
+}
+
+.tab{
+    content: "&#9";
+    padding-left: 3.5em;
+}
+
+.portrait{
+    width: 20%;
+    float: right;
+}
+
+.image{
+    height: 150px;
+}
+
+.gallery{
+    float: left;
+    margin: 0 10px 10px;
+}
+
+.descr{
+    max-width: 120px;
+}
+
+.hr::after{
+    content: "hallo";
+    display: block;
+}

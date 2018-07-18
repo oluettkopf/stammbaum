@@ -1,0 +1,19 @@
+{% extends 'base.twig' %}
+
+{% block head %}
+    {{ parent() }}
+
+{% endblock %}
+
+{% block content %}
+    <table>
+        <tr><th>Ort</th></tr>
+        {% for place in places %}
+            {% if place.level == 1 %}
+            <tr><td><a href="?c=place_detail&id={{ place.id }}">{{ place.name }}</a></td>
+
+            </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+{% endblock %}

@@ -1,0 +1,26 @@
+body{
+	font-size:1.2em
+}
+
+#tree{
+	width:90%;
+	height:auto;
+	display:block;
+	margin:auto;
+}
+
+.container{
+	position:relative;
+}
+
+#current{
+	position:absolute;
+	top:74%;
+	left:42%;
+}
+
+.father{
+	position:absolute;
+	top:51%;
+	left:23%;
+}

@@ -1,0 +1,221 @@
+{% extends 'base.twig' %}
+
+{% block head %}
+    {{ parent() }}
+
+{% endblock %}
+
+    {% macro emptydata(string, before, after) %}
+    {% if string is not empty %}
+        {{- before ~ string ~ after }} <br>
+    {% endif %}
+    {% endmacro %}
+
+    {% macro personlink(person,before,after,ln) %}  {# ln=0 lastname=lastname, ln=1 lastname=birthname#}
+        {% if person is not empty %}
+            {{ before }} <a href="?c=detail&id={{ person.id }}">
+            {% for name,value in person.getFullname() %}
+                {% if value == 0 %}
+                    <span class="smaller" >{{ name }} </span>
+                {% else %} <span class="nobr">
+                    {% if ln==1 and loop.last and person.getBirthname is not empty %} {{ person.getBirthname|replace({'Freiherr':"",'Freiin':"",'Reichsgraf':"",'Reichsgräfin':""}) }}
+                        {% else %}{{ name|replace({'Freiherr':"",'Freiin':"",'Reichsgraf':"",'Reichsgräfin':""}) }}
+                    {% endif %}</span>
+                {% endif %}
+            {% endfor %}
+            </a><span class="smaller nobr"> {{ after }} </span><br>
+        {% endif %}
+    {% endmacro %}
+
+
+{% block content %}
+
+    <div id="parchment">
+    <div id="content">
+        {% if person.getPortrait is not empty %}
+            <img class="portrait" src="../{{ person.getPortrait.url }}">
+            {% endif %}
+    <H1>
+    {% for name,value in person.getFullname() %}
+        {% if value == 0 %}
+            <span class="smaller" >{{ name }} </span>
+        {% else %} <span class="nobr">{{ name }} </span>
+        {% endif %}
+    {% endfor %}
+    {% if person.birthname is not empty %} <span class="nobr">geb. {{ person.birthname }}</span> {% endif %}
+    </H1>
+    <section class="hr">
+    geboren: {{ person.getBirthday() }} {% if person.birthplace is not empty %}
+                                                in {{ person.birthplace }}{% endif %}<br>
+    {% if person.baptised is not empty %}
+        getauft am {{ person.baptised|date('d.m.Y') }} <br>
+    {% endif %}
+
+    {% if person.getDeathdate is not empty %}
+        gestorben: {{ person.getDeathdate() }}
+        {% if person.deathplace is not empty %} in {{ [person.deathplace, person.age]|join(', ') }}
+                                            {% else %}{{ person.age }}{% endif %}
+    {% elseif person.deathplace is not empty %} gestorben in {{ person.deathplace }}
+        {% endif %}
+    <br><br>
+
+    {{ _self.emptydata(person.occupation,"Beruf: ", "") }} <br>
+
+    {{ _self.personlink(person.father, "Vater: ",person.father.getLifetime,1)}}
+    {{ _self.personlink(person.mother, "Mutter: ",person.mother.getLifetime,1)}} <br>
+    </section>
+
+    {% for relation in person.relationships %}
+        <section class="hr">
+            <br>
+        {% if relation.married == 1 %} <span class="bold">Ehe</span> mit
+            {% else %} Beziehung mit {% endif %}
+        {{ _self.personlink(relation.spouse,"",relation.spouse.getLifetime,1) }}
+        <span class="tab"></span> {{ _self.emptydata(relation,"","") }}<br>
+            {{ relation.getNotes }}<br>
+        {% for child in relation.children %}
+            {% if loop.first %}Kinder:
+                {% else %} <span class="tab"> </span>
+            {% endif %}
+            {{ _self.personlink(child,"",child.getLifetime,0) }}
+        {% endfor %}<br>
+        </section>
+    {% endfor %}
+
+    {% for child in person.getChildren %}
+        {% if loop.first %}<section class="hr"><br> Kinder:
+            {% else %} <span class="tab"> </span>{% endif %}
+        {{ _self.personlink(child,"",child.getLifetime,0) }}
+        {% if loop.last %}<br></section> {% endif %}
+    {% endfor %}
+
+    {% if (person.getSiblings is not empty) or (person.getHalfsiblingsFather is not empty) or (person.getHalfsiblingsMother is not empty) %}
+        <section class="hr"><br>
+        {% for child in person.getSiblings %}
+            {% if loop.first %}
+                <details><summary>Geschwister:</summary><span class="tab"> </span>
+                {% else %} <span class="tab"> </span>{% endif %}
+            {{ _self.personlink(child,"",child.getLifetime,0) }}
+            {% if loop.last %}</details><br> {% endif %}
+        {% endfor %}
+
+        {% for child in person.getHalfsiblingsFather %}
+            {% if loop.first %}
+                <details><summary>Halb-Geschwister (Vater):</summary><span class="tab"> </span>
+            {% else %} <span class="tab"> </span>{% endif %}
+            {{ _self.personlink(child,"",child.getLifetime,0) }}
+            {% if loop.last %}</details><br> {% endif %}
+        {% endfor %}
+
+        {% for child in person.getHalfsiblingsMother %}
+            {% if loop.first %}
+            <details><summary>Halb-Geschwister (Mutter):</summary><span class="tab"> </span>
+            {% else %} <span class="tab"> </span>{% endif %}
+            {{ _self.personlink(child,"",child.getLifetime,0) }}
+            {% if loop.last %}</details><br> {% endif %}
+        {% endfor %}
+        </section>
+    {% endif %}
+<br>
+    {% if person.notes is not empty %}
+        Notizen:
+        <ul class="notes">
+        {% for note in person.notes %}
+            <li> {{ note }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+    {{ _self.emptydata(person.deathcause,"Todesursache: ","") }}
+
+
+
+    </div>
+    </div>
+
+    {% macro imagelink (images) %}
+        {% if images is not empty %}
+            {% for image in images %}
+        <figure class="gallery">
+
+            <a href="../{{ image.url }}"> <img class="image" src="../{{ image.url }}"></a>
+            <figcaption class="smaller">
+                {{ image.description ~ " " ~ image.year}}
+            </figcaption>
+        </figure>
+                {% endfor %}{% endif %}
+        {% endmacro %}   {#  {{  _self.imagelink(person.getImages)}}#}
+
+    <h3>Galerie:</h3>
+   {% if person.getImages is not empty %}
+       <figure class="galleryWrap">
+       {% for image in p2.getImages2 %}
+           <figure class="gallery">
+               <img class="previewImage cursor" src="../{{ image.url }}" alt="{{ image.description ~ " " ~ image.year }}" onclick="openModal(); currentSlide({{ loop.index }})">
+               <figcaption class="smaller">
+                   {{ image.description ~ " " ~ image.year}}
+               </figcaption>
+               <div class="nodisplay">
+                   <div class="table">
+                   {% for person,value in image.getPersons %}
+                       <div class="tr">
+                           <div class="td">{{ all[person] }} </div><div class="td"> {{ value }}</div>
+                       </div>
+               {% endfor %}
+                   </div>
+               </div>
+           </figure>
+        {% endfor %}
+       </figure>
+
+       <div id="imgModal" class="modal">
+           <span class="close cursor" onclick="closeModal()">&times;</span>
+           <div class="modal-content">
+
+               <div class="mainImage">
+                   <div id="numbertext"></div>
+                   <img id="mainImage" src=" " alt="">
+               </div>
+                   <div class="caption-container">
+                       <p id="caption"></p>
+                       <p id="persons-in-image"></p>
+                   </div>
+
+               <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+               <a class="next" onclick="plusSlides(1)">&#10095;</a>
+               {# <figure class="previewbar">
+                                 {% for image in person.getImages %}
+                                     <figure class="modalpreview">
+                                         <img class="preview" src="../{{ image.url }}" alt="{{ image.description ~ " " ~ image.year }}" onclick="currentSlide({{ loop.index }})">
+                                     </figure>
+                                 {% endfor %}
+                             </figure><br>#}
+           </div>
+       </div>
+   {% endif %}
+
+    {% if p2.getDocuments is not empty %}
+        <div class="documentwrap">
+            <ul>
+            {% for document in p2.getDocuments %}
+                <li class="document" onclick="openDocModal(); currentDoc({{ loop.index }});">{{ document.getDescription }}</li>
+
+            {% endfor %}
+            </ul>
+        </div>
+
+        <div class="modal" id="docModal">
+            <span class="close cursor" onclick="closeDocModal()">&times;</span>
+            <div class="modal-content">
+                {% for document in p2.getDocuments %}
+                    <object class="docObjects" data="../{{ document.getUrl }}" type="application/pdf"></object>
+                {% endfor %}
+
+            </div>
+        </div>
+    {% endif %}
+
+
+
+
+{% endblock %}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<head>
+    {% block head %}
+    <meta charset="utf-8">
+    <title>Stammbaum</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+        <script language="javascript" type="text/javascript" src="js/js.js"></script>
+    {% endblock %}
+</head>
+<body onresize="resize()">
+
+<nav>
+    <ul>
+        <li><a href="?c=list">Übersicht</a></li>
+        <li><a href="?c=detail&id=1">Personen</a></li>
+        <li><a href="../tree.php?id={{ person.id }}">Stammbaum</a></li>
+        <li><a href="?c=places">Orte</a></li>
+    </ul>
+</nav>
+<main>
+<h1>{% block title %}{% endblock %}</h1>
+
+{% block content %}{% endblock %}
+
+</main>
+
+<footer></footer>
+
+</body>

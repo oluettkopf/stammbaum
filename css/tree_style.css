@@ -1,0 +1,277 @@
+html {
+  font-size: 14px;
+}
+@media (max-width: 900px) {
+  html { font-size: 14px; }
+}
+@media (max-width: 400px) {
+  html { font-size: 13px; }
+}
+
+body{
+	font-family:sans-serif;
+
+	margin: 30px;
+}
+main{
+	margin:40px 0;
+}
+
+nav ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	border: 1px solid #e7e7e7;
+	background-color: #f3f3f3;
+}
+
+nav li {
+	list-style: none;
+	float: left;
+
+}
+nav li a {
+	display: block;
+	color: #666;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+nav li a:hover:not(.active) {
+	background-color: #ddd;
+}
+
+nav li a.active {
+	color: white;
+	background-color: #4CAF50;
+}
+
+a{
+	color: black;
+	text-decoration: none;
+}
+
+
+footer{
+	clear: left;
+}
+.name{
+	font-size: 1.2em;
+	line-height: 150%;
+}
+
+.container2{
+
+	width:10%;
+
+
+}
+
+.greatgrandparentsM{
+	width:10%;
+	height: 115px;
+	border-radius:5px;
+	background-color:lightgrey;
+	padding:5px;
+	margin:0.5% 0 0.5% 1%;
+	float:left;
+	font-size: 0.8em;
+}
+.greatgrandparentsF{
+	width:10%;
+	height: 115px;
+	border-radius:5px;
+	background-color:lightgrey;
+	padding:5px;
+	margin:0.5% 1% 0.5% 0.5%;
+	float:left;
+	font-size: 0.8em;
+	overflow: auto;
+}
+
+#grandfather1,#grandmother1,#grandfather2,#grandmother2{
+	
+	width:20.5%;
+	height:100px;
+	border-radius:5px;
+	background-color:lightgrey;
+	padding:8px 10px;
+	margin:0 1% 0 1%;
+	float:left;
+	font-size: 0.9em;
+}
+
+#father,#mother{
+	width:20%;
+	height:100px;
+	
+	margin:0 10% 0 10%;
+	background-color:lightgrey;
+	border-radius:5px;
+	padding:10px 15px;
+	float:left;
+	position:relative;
+}
+
+.grandparents{
+	display:block;
+	border-width:0 1px 1px 1px;
+	border-style:solid;
+	border-color:black;
+	width:24%;
+	height:15px;
+	margin-left:11%;
+	margin-right:14%;
+	float:left;
+
+}
+
+.grandparents2{
+	border-width:0 1px 0 0;
+	border-style:solid;
+	border-color:black;
+	width:20%;
+	height:15px;
+	margin-right:23%;
+	float:left;
+}
+
+#parents{
+	display:block;
+	border-width:0 1px 1px 1px;
+	border-style:solid;
+	border-color:black;
+	width:43%;
+	height:15px;
+	margin-left:20%;
+	margin-right:30%;
+	float:left;
+	
+}
+
+#parents2{
+	border-width:0 1px 0 0;
+	border-style:solid;
+	border-color:black;
+	width:38%;
+	height:15px;
+	margin-right:30%;
+	float:left;
+}
+
+#active{
+	width:25%;
+	height:100px;
+	margin:0 3% 3% 25%;
+	background-color:lightgrey;
+	border-radius:5px;
+	padding:10px 15px;
+	float:left;
+	display:block;
+	position: relative;
+}
+
+.wife{
+	float:left;
+	width:25%;
+	height:100px;
+	margin:0 3% 3% 0;
+	background-color:lightgrey;
+	border-radius:5px;
+	padding:10px 15px;
+	display:block;
+}
+.wife:not(:first-child){
+	clear:left;
+	margin:0 0  3% 0;
+}
+.children{
+	float:left;
+	width:17%;
+	height:115px;
+	margin:0 0.5% 3% 0;
+	background-color: #e1e1e1;
+	border-radius:5px;
+	padding:8px 10px;
+	display:block;
+	font-size: 0.9em;
+	position: relative;
+}
+.children:first-child{
+	clear: left;
+}
+
+
+.relative {
+	position: relative;
+}
+
+.absolute {
+	position: absolute;
+	bottom: 10px;
+	left:10px;
+}
+.absolutetop{
+	position: absolute;
+	top:-15px;
+	left:50%;
+}
+
+#tooltip{
+	display: none;
+	border:1px solid black;
+	background-color: lightsteelblue;
+	padding:2px;
+	border-radius: 2px;
+	position:fixed;
+	top: 50%;
+	right: 10%;
+	z-index: 1;
+}
+
+#fathertooltip{
+	position:absolute;
+	left:103%;
+	top:0;
+	display: none;
+	border: 1px solid lightsteelblue;
+	z-index: 1;
+	width:100%;
+	height:auto;
+	border-radius: 3px;
+	background-color: lightsteelblue;
+	overflow: visible;
+	font-size: 0.8em;
+}
+
+#father:hover #fathertooltip{
+	display: block;
+}
+#father #fathertooltip::after {
+	content: " ";
+	position: absolute;
+	top: 50%;
+	right: 100%;
+	margin-top: -5px;
+	border-width: 6px;
+	border-style: solid;
+	border-color: transparent lightsteelblue transparent transparent;
+
+}
+
+.arrow::after{
+	content: " ";
+	position: absolute;
+	top: 100%;
+	right: 50%;
+	margin-top: -5px;
+	border-width: 6px;
+	border-style: solid;
+	border-color: transparent lightsteelblue transparent transparent;
+}
+
+.small{
+	font-size: 0.8em;
+}
